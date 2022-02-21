@@ -17,13 +17,12 @@ const schema = yup.object().shape({
   birthday: yup.date().required(),
   address: yup.string().required(),
   telephone: yup.number(),
-  mobile: yup.number().required(),
+  mobile: yup.number(),
   email: yup.string().email(),
-  status: yup.string().required(),
+  status: yup.string(),
   file: yup.mixed(),
   startDate: yup.date().required(),
   designation: yup.string(),
-  terms: yup.bool().required().oneOf([true], 'terms must be accepted'),
 });
 
 export default function NewEmployee() {
@@ -55,7 +54,6 @@ export default function NewEmployee() {
         file: null,
         startDate: '',
         designation:'',
-        terms: false,
       }}
     >
       {({
@@ -386,18 +384,6 @@ export default function NewEmployee() {
           
             </Form.Row>
 
-          <Form.Group>
-            <Form.Check
-              required
-              name="terms"
-              label="Agree to terms and conditions"
-              onChange={handleChange}
-              isInvalid={!!errors.terms}
-              feedback={errors.terms}
-              id="validationFormik106"
-              feedbackTooltip
-            />
-          </Form.Group>
           <Button type="submit">Submit form</Button>
         </Form>
       )}
